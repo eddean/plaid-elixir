@@ -169,4 +169,25 @@ defmodule Plaid.Item do
     |> Utils.handle_resp(:item)
   end
 
+  @doc """
+  [Creates a processor token specifically for stripe]
+  used to create an authenticated funding source with Stripe.
+
+  Parameters
+  ```
+  %{access_token: "access-env-identifier", account_id: "plaid-account-id"}
+  ```
+
+  Response
+  ```
+  {:ok, %{processor_token: "some-token", request_id: "k522f2"}}
+  ```
+  """
+  @spec create_stripe_token(params, cred | nil) :: {:ok, map} | {:error, Plaid.Error.t}
+  def create_stripe_token(params, cred \\ get_cred()) do
+    endpoint = "/processor/stripe/bank_account_token/create"
+    make_request_with_cred(:post, endpoint, cred, params)
+    |> Utils.handle_resp(:item)
+  end
+
 end
