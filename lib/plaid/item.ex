@@ -185,7 +185,7 @@ defmodule Plaid.Item do
   """
   @spec create_stripe_token(params, cred | nil) :: {:ok, map} | {:error, Plaid.Error.t}
   def create_stripe_token(params, cred \\ get_cred()) do
-    endpoint = "/processor/stripe/bank_account_token/create"
+    endpoint = "processor/stripe/bank_account_token/create"
     make_request_with_cred(:post, endpoint, cred, params)
     |> Utils.handle_resp(:item)
   end
