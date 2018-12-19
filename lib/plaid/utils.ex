@@ -143,4 +143,12 @@ defmodule Plaid.Utils do
       Map.put(acc, String.to_atom(k), v)
     end)
   end
+
+  defp map_body(%{"stripe_bank_account_token" => _} = body, :item) do
+    body
+    |> Map.take(["stripe_bank_account_token", "request_id"])
+    |> Enum.reduce(%{}, fn {k, v}, acc ->
+      Map.put(acc, String.to_atom(k), v)
+    end)
+  end
 end

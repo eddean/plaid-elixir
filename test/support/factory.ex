@@ -322,4 +322,11 @@ defmodule Plaid.Factory do
       "request_id" => "45QSn"
     }
   end
+
+  def http_response_body(:create_stripe_token) do
+    %{
+      "stripe_bank_account_token" => "btok_1DjB6UEB62ipHSGRRqTZW2jz",
+      "request_id" => "YsYTUgYasymkeaI"
+    }
+  end
 end
